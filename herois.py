@@ -1,0 +1,64 @@
+from time import sleep
+from cabecalho_limpar import cabecalho, limpar
+
+# Função para criar o jogador com base na classe escolhida
+def escolher_classe():
+    limpar()
+    cabecalho("Escolha sua Classe")
+    print("1. Mago (Alta magia, baixo HP)")
+    print("2. Guerreiro (Alto dano, dano equilibrado)")
+    print("3. Arqueiro (Dano alto, HP médio)")
+    escolha = input("Digite o número da classe que deseja escolher: ")
+
+    if escolha == "1":
+        return {
+            "nome": input("Digite o nome do jogador: "),
+            "classe": "Mago",
+            "level": 1,
+            "xp": 0,
+            "xpMax": 50,
+            "hp": 80,
+            "hpMax": 80,
+            "dano": 40,
+        }
+    elif escolha == "2":
+        return {
+            "nome": input("Digite o nome do jogador: "),
+            "classe": "Guerreiro",
+            "level": 1,
+            "xp": 0,
+            "xpMax": 50,
+            "hp": 150,
+            "hpMax": 150,
+            "dano": 20,
+        }
+    elif escolha == "3":
+        return {
+            "nome": input("Digite o nome do jogador: "),
+            "classe": "Arqueiro",
+            "level": 1,
+            "xp": 0,
+            "xpMax": 50,
+            "hp": 100,
+            "hpMax": 100,
+            "dano": 30,
+        }
+    else:
+        print("Escolha inválida! Tente novamente.")
+        sleep(1)
+        return escolher_classe()
+
+# # Função para atacar o monstro com uma habilidade especial
+# def habilidade_especial(jogador, monstro):
+#     if jogador['level'] >= 3:
+#         dano_especial = jogador['dano'] * 7
+#         monstro['hp'] -= dano_especial
+#         print(f"Você usou uma habilidade especial e causou {dano_especial} de dano!")
+#     else:
+#         print("Você ainda não desbloqueou habilidades especiais!")
+
+# Função para exibir o jogador
+def exibir_jogador(jogador):
+    print(
+        f"Nome: {jogador['nome']} // Classe: {jogador['classe']} // Level: {jogador['level']} // Dano: {jogador['dano']} // HP: {jogador['hp']}/HpMax: {jogador['hpMax']} // EXP: {jogador['xp']}/XpMax: {jogador['xpMax']}"
+    )
