@@ -1,12 +1,12 @@
-def linha(tam = 100):
-    return '-' * tam
+def linha(tam = 75):
+    return '=' * tam
 
 def linha2(tam = 75):
-    return '=' * tam
+    return '-' * tam
 
 def cabecalho(txt):
     print(linha())
-    print(txt.center(100))
+    print(txt.center(75))
     print(linha())
 
 def subcabecalho(txt):

@@ -1,13 +1,13 @@
-from time import sleep
 from cabecalho_limpar import cabecalho, limpar
+from time import sleep
 
 # Função para criar o jogador com base na classe escolhida
 def escolher_classe():
     limpar()
     cabecalho("Escolha sua Classe")
-    print("1. Mago (Alta magia, baixo HP)")
-    print("2. Guerreiro (Alto dano, dano equilibrado)")
-    print("3. Arqueiro (Dano alto, HP médio)")
+    print("1. Mago (Baixo HP, Maior dano)")
+    print("2. Guerreiro (Alto HP, dano equilibrado)")
+    print("3. Arqueiro (HP médio ,Dano médio)")
     escolha = input("Digite o número da classe que deseja escolher: ")
 
     if escolha == "1":
@@ -17,8 +17,8 @@ def escolher_classe():
             "level": 1,
             "xp": 0,
             "xpMax": 50,
-            "hp": 80,
-            "hpMax": 80,
+            "hp": 100,
+            "hpMax": 100,
             "dano": 40,
         }
     elif escolha == "2":
@@ -28,9 +28,9 @@ def escolher_classe():
             "level": 1,
             "xp": 0,
             "xpMax": 50,
-            "hp": 150,
-            "hpMax": 150,
-            "dano": 20,
+            "hp": 1000,
+            "hpMax": 1000,
+            "dano": 1000,
         }
     elif escolha == "3":
         return {
@@ -39,8 +39,8 @@ def escolher_classe():
             "level": 1,
             "xp": 0,
             "xpMax": 50,
-            "hp": 100,
-            "hpMax": 100,
+            "hp": 150,
+            "hpMax": 150,
             "dano": 30,
         }
     else:

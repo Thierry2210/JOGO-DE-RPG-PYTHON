@@ -1,5 +1,7 @@
+from imports import *
 from random import randint
-from cabecalho_limpar import cabecalho, subcabecalho, limpar
+from time import sleep
+import sys
 
 # Função para iniciar a batalha
 def iniciar_batalha(jogador, monstro, multiplicador):
@@ -27,9 +29,19 @@ def iniciar_batalha(jogador, monstro, multiplicador):
 
     if jogador['hp'] > 0:
         jogador['xp'] += monstro['xp'] * multiplicador
-        print(f"O {jogador['nome']} venceu a batalha e ganhou {monstro['xp']} de EXP!")
+        print(f"O {jogador['nome']} venceu a batalha e ganhou {monstro['xp'] * multiplicador} de EXP!")
+
     else:
         print(f"O {monstro['nome']} venceu!!!")
+        subcabecalho("Você foi derrotado!")
+        cabecalho("FIM DE JOGO")
+        print("Você não sobreviveu à batalha.")
+        subcabecalho("Pressione Enter para sair.")
+        input()
+        cabecalho("Saindo do jogo...")
+        sleep(2)
+        limpar()
+        sys.exit(0)
 
 # Função para atacar o monstro
 def atacar_monstro(jogador, monstro):
@@ -44,7 +56,6 @@ def atacar_monstro(jogador, monstro):
 
 # Função para atacar o jogador
 def atacar_jogador(jogador, monstro):
-    print("==============================\n")
     jogador['hp'] -= monstro['dano']
     print(f"O {monstro['nome']} atacou você e causou {monstro['dano']} de dano!")
 
@@ -52,5 +63,8 @@ def atacar_jogador(jogador, monstro):
 def exibir_info_batalha(jogador, monstro):
     subcabecalho("Informações da Batalha")
     print(f"Jogador: HP {jogador['hp']} / {jogador['hpMax']}")
-    print(f"Monstro: {monstro['nome']} - HP {monstro['hp']} / {monstro['hpMax']}")
-    print("==============================\n")
+    if monstro.get("mostrar_status", True):
+        print(f"Monstro: {monstro['nome']} - HP {monstro['hp']} / {monstro['hpMax']}")
+    else:
+        print(f"Monstro: {monstro['nome']} - HP ??? / ???")
+    print(f"Jogador: HP {jogador['hp']} / {jogador['hpMax']}")
