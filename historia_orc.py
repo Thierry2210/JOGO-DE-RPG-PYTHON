@@ -5,7 +5,6 @@ from time import sleep
 def emboscada_orcs(jogador, multiplicador, contexto="emboscado por orcs"):
     print(f"\nVocê é {contexto}! Prepare-se para a batalha.")
     sleep(2)
-    gerar_monstros(1, multiplicador, "Orc")
     batalha_orcs(jogador, multiplicador)
 
 # Função de escolha robusta (assumindo que não está duplicada)

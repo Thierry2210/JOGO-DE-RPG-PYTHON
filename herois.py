@@ -1,4 +1,4 @@
-from cabecalho_limpar import cabecalho, limpar
+from cabecalho_limpar import cabecalho,subcabecalho, limpar
 from time import sleep
 
 # Função para criar o jogador com base na classe escolhida
@@ -57,8 +57,31 @@ def escolher_classe():
 #     else:
 #         print("Você ainda não desbloqueou habilidades especiais!")
 
+
+# Inicializa o jogador com a classe escolhida
+jogador = escolher_classe()
+
 # Função para exibir o jogador
 def exibir_jogador(jogador):
     print(
         f"Nome: {jogador['nome']} // Classe: {jogador['classe']} // Level: {jogador['level']} // Dano: {jogador['dano']} // HP: {jogador['hp']}/HpMax: {jogador['hpMax']} // EXP: {jogador['xp']}/XpMax: {jogador['xpMax']}"
     )
+
+def reset_jogador():
+    jogador['hp'] = jogador['hpMax']
+
+# Função para subir de nível
+def subir_de_nivel():
+    while jogador['xp'] >= jogador['xpMax']:
+        subcabecalho("\nVocê subiu de nível!")
+        jogador['level'] += 1
+        jogador['xp'] = 0
+        jogador['xpMax'] = int(jogador['xpMax'] * 1.5)
+        jogador['hpMax'] = int(jogador['hpMax'] * 1.5)
+        jogador['hp'] = jogador['hpMax']
+        print(f"Parabéns! Você subiu para o nível {jogador['level']}!")
+        print(f"HP máximo: {jogador['hpMax']}")
+        print(f"XP máximo: {jogador['xpMax']}")
+        print(f"HP atual: {jogador['hp']}")
+        print(f"XP atual: {jogador['xp']}")
+        print(f"XP necessário para o próximo nível: {jogador['xpMax'] - jogador['xp']}")

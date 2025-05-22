@@ -29,7 +29,9 @@ def iniciar_batalha(jogador, monstro, multiplicador):
 
     if jogador['hp'] > 0:
         jogador['xp'] += monstro['xp'] * multiplicador
-        print(f"O {jogador['nome']} venceu a batalha e ganhou {monstro['xp'] * multiplicador} de EXP!")
+        subcabecalho("Você venceu a batalha!")
+        print(f"O {jogador['nome']} venceu a batalha e ganhou {monstro['xp'] * multiplicador} de EXP!\n")
+        subir_de_nivel()
 
     else:
         print(f"O {monstro['nome']} venceu!!!")
