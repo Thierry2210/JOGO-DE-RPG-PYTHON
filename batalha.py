@@ -1,5 +1,5 @@
 from imports import *
-from random import randint
+from random import randint, choice
 from time import sleep
 import sys
 
@@ -18,13 +18,15 @@ def iniciar_batalha(jogador, monstro, multiplicador):
         if escolha == "1":
             atacar_monstro(jogador, monstro)
         elif escolha == "2":
-            jogador['hp'] += 10  # Defesa recupera um pouco de HP
-            print("Você se defendeu e recuperou 10 HP!")
+            defender(jogador)
+            sleep(1)
         else:
-            print("Escolha inválida!")
+            print(f"Escolha inválida! Você ficou indeciso e o {monstro['nome']} te atacou mesmo assim.")
+            sleep(1)
 
         if monstro["hp"] > 0:
             atacar_jogador(jogador, monstro)
+            
         exibir_info_batalha(jogador, monstro)
 
     if jogador['hp'] > 0:
@@ -35,7 +37,6 @@ def iniciar_batalha(jogador, monstro, multiplicador):
 
     else:
         print(f"O {monstro['nome']} venceu!!!")
-        subcabecalho("Você foi derrotado!")
         cabecalho("FIM DE JOGO")
         print("Você não sobreviveu à batalha.")
         subcabecalho("Pressione Enter para sair.")
@@ -52,9 +53,32 @@ def atacar_monstro(jogador, monstro):
         dano_critico = jogador['dano'] * 2
         monstro['hp'] -= dano_critico
         print(f"Ataque crítico! Você causou {dano_critico} de dano!")
+        sleep(1)
     else:
         monstro['hp'] -= jogador['dano']
         print(f"Você causou {jogador['dano']} de dano!\n")
+        sleep(1)
+        
+def defender(jogador):
+    hpAtual = jogador['hp']
+    hpMax = jogador['hpMax']
+    if hpAtual < hpMax:
+        if (hpMax - hpAtual) < 10:
+            hpRecuperado = hpMax - hpAtual # Recupera o restante para chegar no máximo
+            jogador['hp'] += hpRecuperado
+            print(f"Você se defendeu e recuperou {hpRecuperado} HP!")
+        else:
+            jogador['hp'] += 10  # Defesa recupera um pouco de HP
+            print("Você se defendeu e recuperou 10 HP!")
+    else:
+        mensagens_defesa = [
+            "O inimigo tentou te derrubar mas você se defendeu!",
+            "O inimigo tentou lhe dar uma voadora, mas você se agachou!",
+            "Você sente uma enorme força e consegue defender-se do ataque",
+            "Essa passou perto, mas você conseguiu se esquivar!",
+            "Os espíritos conjuraram uma magia de proteção em você no momento do ataque. Que sorte, hein!"
+        ]
+        print(choice(mensagens_defesa)) # Escolhe aleatoriamente uma resposta com base na biblioteca random.choice
 
 # Função para atacar o jogador
 def atacar_jogador(jogador, monstro):
@@ -69,4 +93,3 @@ def exibir_info_batalha(jogador, monstro):
         print(f"Monstro: {monstro['nome']} - HP {monstro['hp']} / {monstro['hpMax']}")
     else:
         print(f"Monstro: {monstro['nome']} - HP ??? / ???")
-    print(f"Jogador: HP {jogador['hp']} / {jogador['hpMax']}")

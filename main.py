@@ -12,6 +12,7 @@ multiplicador = multiplicadores.get(dificuldade)
 
 if multiplicador is None:
     print("Dificuldade inválida! Usando 'médio' como padrão.")
+    sleep(1)
     multiplicador = 1.5
 
 # Introdução e início da história
@@ -35,13 +36,13 @@ introducao()
 exibir_jogador(jogador)
 
 # Função para iniciar a história com os goblins
-# historia_goblins(jogador, multiplicador)
+historia_goblins(jogador, multiplicador)
 
 # Função para iniciar a história com os orcs
-# historia_orcs(jogador, multiplicador)
+historia_orcs(jogador, multiplicador)
 
 # Função para iniciar a história com o dragão
 historia_dragao(jogador, multiplicador)
 
 # Função para iniciar a história com o Rei Demônio
-# historia_rei_demonio(jogador, multiplicador)
+historia_rei_demonio(jogador, multiplicador)

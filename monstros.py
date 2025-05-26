@@ -37,7 +37,7 @@ def criar_monstro(tipo, level, multiplicador):
             "hpMax": int(200 * multiplicador),
             "xp": int(250 * multiplicador)
         }
-    elif tipo == "Rei Demônio":
+    elif tipo == "Rei demônio":
         return {
             "nome": f"Rei Demônio #{level}",
             "level": level,

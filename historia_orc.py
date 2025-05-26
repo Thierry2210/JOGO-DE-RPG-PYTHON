@@ -1,4 +1,4 @@
-from imports import subcabecalho, gerar_monstros, lista_monstro, iniciar_batalha
+from imports import *
 from time import sleep
 
 # Função auxiliar para lidar com emboscadas de orcs
@@ -18,7 +18,7 @@ def escolha_opcao(pergunta, opcoes_validas):
 
 # Função principal da história dos orcs
 def historia_orcs(jogador, multiplicador):
-    subcabecalho("Continuação da Jornada")
+    subcabecalho("\033[1;32mContinuação da Jornada\033[0m")
     print("Terras dos Orcs")
     print("Após algum tempo caminhando, acampando e batalhando pela sua vida durante dias e noites.")
     print("Você finalmente encontra uma saída da floresta.")
@@ -118,6 +118,8 @@ def batalha_orcs(jogador, multiplicador):
     sleep(2)
     print("O território dos orcs ficou para trás, mas você sabe que desafios ainda maiores te aguardam.")
     sleep(2)
+    print("\n Você encontra algumas armas ao passar pelo vilarejo, elas parecem ser úteis.")
+    upar_item(jogador)
     print("Com determinação, você segue sua jornada, buscando respostas e sobrevivência.")
     sleep(2)
     print("A aventura é muito mais perigosa do que você pensava...")

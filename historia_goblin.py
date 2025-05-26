@@ -1,4 +1,4 @@
-from imports import subcabecalho, cabecalho, limpar, gerar_monstros, lista_monstro, iniciar_batalha
+from imports import *
 from time import sleep
 
 # Função auxiliar para lidar com emboscadas de goblins
@@ -19,13 +19,13 @@ def escolha_opcao(pergunta, opcoes_validas):
 
 # Função principal da história
 def historia_goblins(jogador, multiplicador):
-    subcabecalho("Início da História")
+    subcabecalho("\033[1;32mInício da História\033[0m")
     print("A Floresta Misteriosa")
     print("Você acorda em uma floresta densa, cercado por árvores altas e sombras misteriosas.")
     print("Não se lembra de como chegou aqui ou quem você é, mas sente uma estranha sensação de que algo está errado.")
     sleep(3)
     print("Enquanto tenta se orientar, ouve um rugido distante. Algo grande está por perto.")
-    sleep(3)
+    sleep(1)
 
     print("O que você faz?")
     print("1. Investigar o som.")
@@ -37,7 +37,7 @@ def historia_goblins(jogador, multiplicador):
         print("Você decide investigar o som e se aproxima cautelosamente.")
         sleep(2)
         print("À frente, encontra um dragão ferido, com escamas brilhantes e olhos assustados.")
-        sleep(3)
+        sleep(2)
 
         print("\nO que você faz?")
         print("1. Ajudar o dragão")
@@ -124,8 +124,10 @@ def batalha_goblins(jogador, multiplicador):
 
     print("\nApós a batalha, você respira fundo e tenta se recuperar.")
     sleep(2)
-    print("Você se levanta, sacode a poeira e continua sua jornada.")
+    print("Você se levanta, sacode a poeira e olha ao redor.\n")
     sleep(2)
+    print("Você vê que o goblin estava carregando uma arma aparentemente mais poderosa que a sua e decide levá-la!")
+    upar_item(jogador)
     print("A floresta parece menos ameaçadora agora, mas você sabe que perigos ainda estão por vir.")
     sleep(2)
     print("Você avança, determinado a tentar sair dessa floresta em busca de saber quem você é.")

@@ -1,4 +1,5 @@
 from cabecalho_limpar import cabecalho,subcabecalho, limpar
+from armas import espadaInicial, arcoInicial, cajadoInicial
 from time import sleep
 
 # Função para criar o jogador com base na classe escolhida
@@ -19,7 +20,9 @@ def escolher_classe():
             "xpMax": 50,
             "hp": 100,
             "hpMax": 100,
-            "dano": 40,
+            "arma": cajadoInicial,
+            "danoBase": 40,
+            "dano": cajadoInicial.poder + 40
         }
     elif escolha == "2":
         return {
@@ -30,7 +33,9 @@ def escolher_classe():
             "xpMax": 50,
             "hp": 1000,
             "hpMax": 1000,
-            "dano": 1000,
+            "arma": espadaInicial,
+            "danoBase": 1000,
+            "dano": espadaInicial.poder + 1000
         }
     elif escolha == "3":
         return {
@@ -41,7 +46,9 @@ def escolher_classe():
             "xpMax": 50,
             "hp": 150,
             "hpMax": 150,
-            "dano": 30,
+            "arma": arcoInicial,
+            "danoBase": 30,
+            "dano": arcoInicial.poder + 30
         }
     else:
         print("Escolha inválida! Tente novamente.")
@@ -64,11 +71,24 @@ jogador = escolher_classe()
 # Função para exibir o jogador
 def exibir_jogador(jogador):
     print(
-        f"Nome: {jogador['nome']} // Classe: {jogador['classe']} // Level: {jogador['level']} // Dano: {jogador['dano']} // HP: {jogador['hp']}/HpMax: {jogador['hpMax']} // EXP: {jogador['xp']}/XpMax: {jogador['xpMax']}"
+        f"Nome: {jogador['nome']} // Classe: {jogador['classe']} // Level: {jogador['level']} // Dano: {jogador['dano']} // HP: {jogador['hp']} // HpMax: {jogador['hpMax']} // EXP: {jogador['xp']} // XpMax: {jogador['xpMax']}"
     )
 
 def reset_jogador():
     jogador['hp'] = jogador['hpMax']
+    
+def atualizar_dano(jogador):
+    jogador["dano"] = jogador["danoBase"] + jogador["arma"].poder
+    
+def upar_item(jogador):
+    item = jogador["arma"]
+    if item.next:
+        print(f"\n** O item \033[34m{item.nome}\033[0m evoluiu para \033[34m{item.next.nome}\033[0m! **\n")
+        jogador["arma"] = item.next
+        atualizar_dano(jogador)
+        sleep(1)
+    else:
+        print("A arma já está no nível máximo.")
 
 # Função para subir de nível
 def subir_de_nivel():
@@ -79,6 +99,7 @@ def subir_de_nivel():
         jogador['xpMax'] = int(jogador['xpMax'] * 1.5)
         jogador['hpMax'] = int(jogador['hpMax'] * 1.5)
         jogador['hp'] = jogador['hpMax']
+        atualizar_dano(jogador)
         print(f"Parabéns! Você subiu para o nível {jogador['level']}!")
         print(f"HP máximo: {jogador['hpMax']}")
         print(f"XP máximo: {jogador['xpMax']}")
