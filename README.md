@@ -62,7 +62,3 @@ O jogo está organizado em múltiplos arquivos para facilitar a manutenção e a
 
 7. **imports.py**
   Arquivo que centraliza todas as importações comuns aos demais módulos. Isso facilita a organização e a manutenção do código.
-
-Estrutura de Dados: Lista simplesmente encadeada. Foi selecionada para se aplicada no sistema de itens pois torna mais fácil o sistema de upgrade, sendo possível obter os dados do próximo item da lista utilizando o .next. Também optamos por novos itens através de listas de tuplas, encadeando elas através de uma única função.
-
-PARTICIPANTES: Matheus Thierry Santos da Silva- 1999010, Vinícios Gualtieri Moraes- 2002601, Kauã Henrique Zeferino Santana- 2012119.

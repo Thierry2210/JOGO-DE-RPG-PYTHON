@@ -5,7 +5,7 @@ from time import sleep
 def emboscada_goblins(jogador, multiplicador, contexto="emboscado por goblins"):
     print(f"\nVocê é {contexto}! Prepare-se para a batalha.")
     sleep(2)
-    criar_monstro("Goblin", 1, multiplicador)
+    gerar_monstros(1, multiplicador, "Goblin")
     batalha_goblins(jogador, multiplicador)
 
 # Função de escolha robusta
@@ -20,6 +20,7 @@ def escolha_opcao(pergunta, opcoes_validas):
 # Função principal da história
 def historia_goblins(jogador, multiplicador):
     subcabecalho("\033[1;32mInício da História\033[0m")
+    registrar_acao("Iniciou sua aventura")
     print("A Floresta Misteriosa")
     print("Você acorda em uma floresta densa, cercado por árvores altas e sombras misteriosas.")
     print("Não se lembra de como chegou aqui ou quem você é, mas sente uma estranha sensação de que algo está errado.")
@@ -34,6 +35,7 @@ def historia_goblins(jogador, multiplicador):
     print()
 
     if escolha == "1":
+        registrar_acao("Investigou o som misterioso e encontrou o Dragão")
         print("Você decide investigar o som e se aproxima cautelosamente.")
         sleep(2)
         print("À frente, encontra um dragão ferido, com escamas brilhantes e olhos assustados.")
@@ -46,23 +48,28 @@ def historia_goblins(jogador, multiplicador):
         escolha_dragao = escolha_opcao("Escolha: ", ["1", "2", "3"])
 
         if escolha_dragao == "1":
+            registrar_acao("Você ajudou o dragão")
             print("\nVocê oferece ajuda ao dragão, que retribui com um rugido agradecido.")
             sleep(2)
             print("Ele sopra uma chama que revela um caminho secreto até um vilarejo.")
             sleep(2)
             print("Mas no meio do trajeto, você é emboscado por goblins saídos da mata!")
+            registrar_acao("Foi emboscado por goblins")
             emboscada_goblins(jogador, multiplicador)
 
         elif escolha_dragao == "2":
+            registrar_acao("Você atacou o dragão (Que crueldade) e recebeu um golpe")
             print("\nVocê ataca, mas o dragão gravimente ferido revida com um golpe fraco do seu bater de asas!")
             jogador['hp'] = max(1, jogador['hp'] // 2)
             print(f"Você é lançado para longe. Seu HP foi reduzido para metade {jogador['hp']}/{jogador['hpMax']}.")
             sleep(2)
             print("Você tenta se levantar, mas os goblins que lhe observaram de longe aproveitam a oportunidade e atacam!")
             sleep(2)
+            registrar_acao("Os goblins lhe atacaram de longe")
             emboscada_goblins(jogador, multiplicador)
 
         elif escolha_dragao == "3":
+            registrar_acao("Você optou por fugir, mas caiu na armadilha goblin")
             print("\nVocê foge, mas escorrega e cai em um buraco feito por alguém ou ALGO.")
             sleep(2)
             print("Ao se levantar, percebe que está cercado por sombras... GOBLINS.")
@@ -73,6 +80,7 @@ def historia_goblins(jogador, multiplicador):
             emboscada_goblins(jogador, multiplicador)
 
     elif escolha == "2":
+        registrar_acao("Ignorou o som e seguiu pela floresta")
         print("Você opta por evitar o som e caminha pela floresta densa.")
         sleep(2)
         print("Após horas, chega a uma clareira iluminada por uma luz mágica.")
@@ -84,11 +92,13 @@ def historia_goblins(jogador, multiplicador):
         escolha_luz = escolha_opcao("Escolha: ", ["1", "2"])
 
         if escolha_luz == "1":
+            registrar_acao("Encontrou o acampamento dos goblins, sendo emboscado")
             print("\nVocê se aproxima da luz e percebe que é uma fogueira de goblins.")
             print("Ao tentar recuar, pisa em um galho. Eles percebem sua presença!")
             emboscada_goblins(jogador, multiplicador)
 
         elif escolha_luz == "2":
+            registrar_acao("Foi atacado por goblins escondidos nas árvores")
             print("\nVocê ignora a luz e continua andando. Após algum tempo, encontra uma trilha humana.")
             sleep(2)
             print("Você a segue, mas é surpreendido por goblins emboscados entre as árvores!")
@@ -134,3 +144,6 @@ def batalha_goblins(jogador, multiplicador):
     sleep(2)
     print("A aventura está apenas começando...")
     sleep(2)
+    registrar_acao("Saiu vitorioso da batalha com os goblins e saqueou suas armas!")
+    mostrar_historico()
+    sleep(4)

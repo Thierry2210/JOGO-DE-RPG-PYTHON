@@ -41,8 +41,10 @@ def historia_orcs(jogador, multiplicador):
     print()
 
     if escolha == "1":
+        registrar_acao("Escolheu investigar a caverna dos orcs")
         explorar_caverna(jogador, multiplicador)
     elif escolha == "2":
+        registrar_acao("Escolheu explorar o vilarejo destruído")
         explorar_vilarejo(jogador, multiplicador)
 
 def explorar_caverna(jogador, multiplicador):
@@ -56,11 +58,13 @@ def explorar_caverna(jogador, multiplicador):
     print()
 
     if escolha == "1":
+        registrar_acao("Escondeu-se para ouvir a conversa dos orcs")
         print("Você se esconde e escuta que estão planejando um ataque ao vilarejo.")
         sleep(2)
         print("Ao tentar sair silenciosamente, um orc te avista!")
         emboscada_orcs(jogador, multiplicador, contexto="descoberto pelos orcs após espioná-los")
     elif escolha == "2":
+        registrar_acao("Atacou os orcs de surpresa na caverna")
         print("Você ataca de surpresa e derruba um orc rapidamente!")
         jogador['xp'] += 50 * multiplicador
         print("Mas os outros reagem e te cercam.")
@@ -76,8 +80,9 @@ def explorar_vilarejo(jogador, multiplicador):
     print("Você busca abrigo em uma torre de vigia próxima.")
     sleep(2)
     print("Mas ao anoitecer, ouve grunhidos... os orcs estão voltando!")
+    registrar_acao("Encontrou um sobrevivente e buscou abrigo, mas foi atacado por orcs")
     emboscada_orcs(jogador, multiplicador, contexto="atacado por orcs ao anoitecer")
-
+    
 def batalha_orcs(jogador, multiplicador):
     subcabecalho("BATALHA CONTRA ORCS")
     sleep(2)
@@ -87,7 +92,8 @@ def batalha_orcs(jogador, multiplicador):
     print()
 
     if acao == "1":
-        criar_monstro("Orc", 3, multiplicador)
+        registrar_acao("Decidiu lutar de frente contra os orcs")
+        gerar_monstros(3, multiplicador, "Orc")
         for monstro in lista_monstro:
             if jogador['hp'] > 0:
                 iniciar_batalha(jogador, monstro, multiplicador)
@@ -98,11 +104,12 @@ def batalha_orcs(jogador, multiplicador):
         sleep(2)
 
     elif acao == "2":
+        registrar_acao("Tentou fugir da batalha contra os orcs")
         print("Você tenta fugir, mas é atingido por uma lança nas costas.")
         jogador['hp'] = max(1, jogador['hp'] // 2)
         print(f"Seu HP foi reduzido para {jogador['hp']}. Você precisa lutar mesmo ferido!")
         sleep(2)
-        criar_monstro("Orc", 3, multiplicador)
+        gerar_monstros(3, multiplicador, "Orc")
         for monstro in lista_monstro:
             if jogador['hp'] > 0:
                 iniciar_batalha(jogador, monstro, multiplicador)
@@ -124,3 +131,6 @@ def batalha_orcs(jogador, multiplicador):
     sleep(2)
     print("A aventura é muito mais perigosa do que você pensava...")
     sleep(2)
+    registrar_acao("Venceu os Orcs e saqueou seu equipamento!")
+    mostrar_historico()
+    sleep(4)

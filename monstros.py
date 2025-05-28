@@ -1,19 +1,16 @@
-# Lista para armazenar os monstros
+# Função para gerar uma lista de monstros
+def gerar_monstros(n_monstros, multiplicador, tipo):
+    lista_monstro.clear()
+    for level in range(1, n_monstros + 1):
+        novo_monstro = criar_monstro(tipo, level, multiplicador)
+        lista_monstro.append(novo_monstro)
+
 lista_monstro = []
 
-# Lista de monstros derrotados
-monstros_derrotados = set()
-
-# Conjunto para armazenar nomes já usados
-nomes_usados = set()
-
-# Função para criar um monstro
+# Função para criar um monstro pelo seu tipo e level
 def criar_monstro(tipo, level, multiplicador):
-    tipo_formatado = tipo.capitalize().strip()
-    nome = f"{tipo_formatado} #{level}"
-    
-    nomes_usados.add(nome) 
-    if tipo_formatado == "Goblin":
+    tipo = tipo.capitalize().strip()
+    if tipo == "Goblin":
         return {
             "nome": f"Goblin #{level}",
             "level": level,
@@ -22,7 +19,7 @@ def criar_monstro(tipo, level, multiplicador):
             "hpMax": int(100 * multiplicador),
             "xp": int(25 * multiplicador)
         }
-    elif tipo_formatado == "Orc":
+    elif tipo == "Orc":
         return {
             "nome": f"Orc #{level}",
             "level": level,
@@ -31,7 +28,7 @@ def criar_monstro(tipo, level, multiplicador):
             "hpMax": int(150 * multiplicador),
             "xp": int(100 * multiplicador)
         }
-    elif tipo_formatado == "Dragão":
+    elif tipo == "Dragão":
         return {
             "nome": f"Dragão #{level}",
             "level": level,
@@ -40,7 +37,7 @@ def criar_monstro(tipo, level, multiplicador):
             "hpMax": int(200 * multiplicador),
             "xp": int(250 * multiplicador)
         }
-    elif tipo_formatado == "Rei demônio":
+    elif tipo == "Rei demônio":
         return {
             "nome": f"Rei Demônio #{level}",
             "level": level,
@@ -60,33 +57,10 @@ def criar_monstro(tipo, level, multiplicador):
             "xp": 999999999,
             "mostrar_stats": False
         }
-        
-def registrar_derrota(monstro):
-    nome = monstro.get("nome")
-    if nome:
-        if nome in monstros_derrotados:
-            print(f"[INFO] O monstro {nome} já foi derrotado anteriormente.")
-        else:
-            monstros_derrotados.add(nome)
-            print(f"[INFO] Monstro {nome} registrado como derrotado.")
-    else:
-        print("[AVISO] Monstro inválido, não pode registrar derrota.")
 
-        
-monstro1 = criar_monstro("Goblin", 1, 1)
-monstro2 = criar_monstro("Goblin", 1, 1)  # Vai avisar que já existe e não criar duplicado
-
-# Exibe os monstros criados
+# Função para exibir os monstros
 def exibir_monstros():
     for monstro in lista_monstro:
         print(
             f"Nome: {monstro['nome']} // Level: {monstro['level']} // Dano: {monstro['dano']} // HP: {monstro['hp']} // EXP: {monstro['xp']}"
         )
-
-# Exibe os tipos únicos criados
-def exibir_tipos_monstros():
-    tipos = set()
-    for monstro in lista_monstro:
-        tipo_nome = monstro["nome"].split(" ")[0]
-        tipos.add(tipo_nome)
-    print("Tipos únicos de monstros criados:", ", ".join(tipos))

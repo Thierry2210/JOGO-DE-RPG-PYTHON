@@ -50,11 +50,12 @@ def batalha_dragao(jogador, multiplicador):
     print()
 
     if acao == "1":
+        registrar_acao("Você escolheu batalhar com o dragão.")
         print("Você ergue sua arma e avança com determinação.")
         print("O dragão ruge, e a batalha começa com um estrondo!")
         print("Você sente a força da escuridão, mas também a luz que brilha dentro de você.")
         sleep(2)
-        criar_monstro("Dragão", 1, multiplicador)
+        gerar_monstros(1, multiplicador, "Dragão")
         for monstro in lista_monstro:
             if jogador['hp'] > 0:
                 iniciar_batalha(jogador, monstro, multiplicador)
@@ -63,12 +64,13 @@ def batalha_dragao(jogador, multiplicador):
                 return
 
     if acao == "2":
+        registrar_acao("Você escolheu tentar conversar")
         print("Você tenta alcançá-lo com palavras, buscando resquícios de sua antiga alma.")
         print("O dragão hesita por um segundo... mas então ruge com fúria, perdendo o controle.")
         print("Agora, ele ataca com toda a força da escuridão. Você deve lutar!")
         jogador['hp'] = int(jogador['hpMax'] * 0.8)
         print(f"Seu HP foi drasticamente reduzido para {jogador['hp']}!")
-        criar_monstro("Dragão", 1, multiplicador)
+        gerar_monstros(1, multiplicador, "Dragão")
         for monstro in lista_monstro:
             if jogador['hp'] > 0:
                 iniciar_batalha(jogador, monstro, multiplicador)
@@ -88,3 +90,6 @@ def batalha_dragao(jogador, multiplicador):
     sleep(3)
     print("Você estende a mão e sente o calor da energia do dragão tomar forma em um novo artefato.")
     upar_item(jogador)
+    registrar_acao("Você derrotou o dragão e obteve seu equipamento através dele!")
+    mostrar_historico()
+    sleep(4)

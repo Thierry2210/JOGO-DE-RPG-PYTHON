@@ -10,31 +10,49 @@ def iniciar_batalha(jogador, monstro, multiplicador):
     subcabecalho(f"Você encontrou um {monstro['nome']}!")
     print(f"HP do {monstro['nome']}: {monstro['hp']} / {monstro['hpMax']}")
     print(f"HP do {jogador['nome']}: {jogador['hp']} / {jogador['hpMax']}")
+    
+    pilha_acoes = []
+
     while jogador["hp"] > 0 and monstro["hp"] > 0:
         print("1. Atacar")
         print("2. Defender")
         escolha = input("Escolha sua ação: ")
+        
+        # Adiciona uma tupla com None, para não dar conflito no for, devido à ação possuir escolha
+        pilha_acoes.append(("ataque_monstro", None))
+        # Adiciona uma tupla a pilha, com a ação do jogador
+        pilha_acoes.append(("acao_jogador", escolha))
 
-        if escolha == "1":
-            atacar_monstro(jogador, monstro)
-        elif escolha == "2":
-            defender(jogador)
-            sleep(1)
-        else:
-            print(f"Escolha inválida! Você ficou indeciso e o {monstro['nome']} te atacou mesmo assim.")
-            sleep(1)
+        # Processar a pilha, enquanto houver ações dentro dela
+        while pilha_acoes:
+            tipo_acao, escolha = pilha_acoes.pop()  # desempilha a última ação
 
-        if monstro["hp"] > 0:
-            atacar_jogador(jogador, monstro)
-            
-        exibir_info_batalha(jogador, monstro)
+            if tipo_acao == "acao_jogador":
+                if escolha == "1":
+                    atacar_monstro(jogador, monstro)
+                elif escolha == "2":
+                    defender(jogador)
+                    sleep(1)
+                else:
+                    print(f"Escolha inválida! Você ficou indeciso e o {monstro['nome']} te atacou mesmo assim.")
+                    sleep(1)
+
+            elif tipo_acao == "ataque_monstro":
+                if monstro["hp"] > 0:
+                    atacar_jogador(jogador, monstro)
+
+            exibir_info_batalha(jogador, monstro)
+
+            # Se alguém morreu, esvazia a pilha pra sair do loop
+            if jogador["hp"] <= 0 or monstro["hp"] <= 0:
+                pilha_acoes.clear()
 
     if jogador['hp'] > 0:
         jogador['xp'] += monstro['xp'] * multiplicador
         subcabecalho("Você venceu a batalha!")
         print(f"O {jogador['nome']} venceu a batalha e ganhou {monstro['xp'] * multiplicador} de EXP!\n")
         subir_de_nivel()
-        return monstro  # Retorna o monstro derrotado
+        return monstro
 
     else:
         print(f"O {monstro['nome']} venceu!!!")
@@ -46,7 +64,7 @@ def iniciar_batalha(jogador, monstro, multiplicador):
         sleep(2)
         limpar()
         sys.exit(0)
-        
+
 # Função para atacar o monstro
 def atacar_monstro(jogador, monstro):
     chance_critico = randint(1, 100)

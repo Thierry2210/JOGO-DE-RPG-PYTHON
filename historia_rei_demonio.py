@@ -40,6 +40,7 @@ def batalha_rei_demonio(jogador, multiplicador):
     print()
 
     if acao == "1":
+        registrar_acao("Você decidiu enfrentar o Rei Demônio")
         print("Você olha para o rei, sentindo sua pressão imponente, mas não se curva perante à ele.")
         sleep(3)
         print("A coragem junto à adrenalina sentida em batalhas anteriores toma o seu corpo.")
@@ -47,6 +48,7 @@ def batalha_rei_demonio(jogador, multiplicador):
         sleep(2)
 
     if acao == "2":
+        registrar_acao("Você pensou que o famoso Rei Demônio nem era tudo isso")
         print("Você encara o Rei Demônio e cospe no chão.")
         sleep(1)
         print("\033[36mVocê: \"Você fala demais para alguém que será esquecido em breve.\"\033[0m")
@@ -58,7 +60,7 @@ def batalha_rei_demonio(jogador, multiplicador):
         print(f"Seu HP foi reduzido para {jogador['hp']}, mas sua força aumentou para {jogador['dano']}!")
         sleep(2)
 
-    criar_monstro("Rei Demônio", 1, multiplicador)
+    gerar_monstros(1, multiplicador, "Rei Demônio")
     for monstro in lista_monstro:
         if jogador['hp'] > 0:
             iniciar_batalha(jogador, monstro, multiplicador)
@@ -79,3 +81,9 @@ def batalha_rei_demonio(jogador, multiplicador):
     sleep(4)
     
     cabecalho("O FIM")
+    
+    print("Registros Finais!")
+    registrar_acao("Você derrotou o Rei Demônio!")
+    mostrar_historico()
+    sleep(4)
+    
