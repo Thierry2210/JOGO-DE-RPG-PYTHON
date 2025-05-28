@@ -87,7 +87,7 @@ def batalha_orcs(jogador, multiplicador):
     print()
 
     if acao == "1":
-        gerar_monstros(3, multiplicador, "Orc")
+        criar_monstro("Orc", 3, multiplicador)
         for monstro in lista_monstro:
             if jogador['hp'] > 0:
                 iniciar_batalha(jogador, monstro, multiplicador)
@@ -102,7 +102,7 @@ def batalha_orcs(jogador, multiplicador):
         jogador['hp'] = max(1, jogador['hp'] // 2)
         print(f"Seu HP foi reduzido para {jogador['hp']}. Você precisa lutar mesmo ferido!")
         sleep(2)
-        gerar_monstros(3, multiplicador, "Orc")
+        criar_monstro("Orc", 3, multiplicador)
         for monstro in lista_monstro:
             if jogador['hp'] > 0:
                 iniciar_batalha(jogador, monstro, multiplicador)

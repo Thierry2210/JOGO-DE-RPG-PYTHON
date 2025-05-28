@@ -58,7 +58,7 @@ def batalha_rei_demonio(jogador, multiplicador):
         print(f"Seu HP foi reduzido para {jogador['hp']}, mas sua força aumentou para {jogador['dano']}!")
         sleep(2)
 
-    gerar_monstros(1, multiplicador, "Rei Demônio")
+    criar_monstro("Rei Demônio", 1, multiplicador)
     for monstro in lista_monstro:
         if jogador['hp'] > 0:
             iniciar_batalha(jogador, monstro, multiplicador)

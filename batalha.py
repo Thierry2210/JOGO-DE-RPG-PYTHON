@@ -34,6 +34,7 @@ def iniciar_batalha(jogador, monstro, multiplicador):
         subcabecalho("Você venceu a batalha!")
         print(f"O {jogador['nome']} venceu a batalha e ganhou {monstro['xp'] * multiplicador} de EXP!\n")
         subir_de_nivel()
+        return monstro  # Retorna o monstro derrotado
 
     else:
         print(f"O {monstro['nome']} venceu!!!")
@@ -45,7 +46,7 @@ def iniciar_batalha(jogador, monstro, multiplicador):
         sleep(2)
         limpar()
         sys.exit(0)
-
+        
 # Função para atacar o monstro
 def atacar_monstro(jogador, monstro):
     chance_critico = randint(1, 100)

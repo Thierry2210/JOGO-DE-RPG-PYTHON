@@ -54,7 +54,7 @@ def batalha_dragao(jogador, multiplicador):
         print("O dragão ruge, e a batalha começa com um estrondo!")
         print("Você sente a força da escuridão, mas também a luz que brilha dentro de você.")
         sleep(2)
-        gerar_monstros(1, multiplicador, "Dragão")
+        criar_monstro("Dragão", 1, multiplicador)
         for monstro in lista_monstro:
             if jogador['hp'] > 0:
                 iniciar_batalha(jogador, monstro, multiplicador)
@@ -68,7 +68,7 @@ def batalha_dragao(jogador, multiplicador):
         print("Agora, ele ataca com toda a força da escuridão. Você deve lutar!")
         jogador['hp'] = int(jogador['hpMax'] * 0.8)
         print(f"Seu HP foi drasticamente reduzido para {jogador['hp']}!")
-        gerar_monstros(1, multiplicador, "Dragão")
+        criar_monstro("Dragão", 1, multiplicador)
         for monstro in lista_monstro:
             if jogador['hp'] > 0:
                 iniciar_batalha(jogador, monstro, multiplicador)

@@ -5,7 +5,7 @@ from time import sleep
 def emboscada_goblins(jogador, multiplicador, contexto="emboscado por goblins"):
     print(f"\nVocê é {contexto}! Prepare-se para a batalha.")
     sleep(2)
-    gerar_monstros(1, multiplicador, "Goblin")
+    criar_monstro("Goblin", 1, multiplicador)
     batalha_goblins(jogador, multiplicador)
 
 # Função de escolha robusta
