@@ -85,5 +85,8 @@ def batalha_rei_demonio(jogador, multiplicador):
     print("Registros Finais!")
     registrar_acao("Você derrotou o Rei Demônio!")
     mostrar_historico()
+    print()
+    print("Monstros enfrentados:")
+    print(monstros_enfrentados)
     sleep(4)
     

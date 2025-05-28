@@ -1,9 +1,15 @@
+monstros_enfrentados = set()
+
+def registrar_monstro_enfrentado(monstro):
+    monstros_enfrentados.add(monstro['nome'])
+
 # Função para gerar uma lista de monstros
 def gerar_monstros(n_monstros, multiplicador, tipo):
     lista_monstro.clear()
     for level in range(1, n_monstros + 1):
         novo_monstro = criar_monstro(tipo, level, multiplicador)
         lista_monstro.append(novo_monstro)
+        registrar_monstro_enfrentado(novo_monstro)
 
 lista_monstro = []
 
